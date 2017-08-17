@@ -18,7 +18,6 @@ app.use(expressValidator());
 
 let todos = [{ todo: "Clean chicken coop" }, { todo: "Feed the Dog" }];
 let completed = [];
-let newItem;
 
 app.get("/", (req, res) => {
   res.render("index", { todos: todos, completed: completed });
@@ -31,7 +30,7 @@ app.post("/addItem", (req, res) => {
 
 app.post("/completeItem", (req, res) => {
   todos.forEach((item, index) => {
-    if (req.body.removeButton == todos[index].todo) {
+    if (req.body.removeItem == todos[index].todo) {
       let addItem = todos[index];
       todos.splice(index, 1);
       completed.push(addItem);

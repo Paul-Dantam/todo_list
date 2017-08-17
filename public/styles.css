@@ -5,9 +5,11 @@
 }
 
 .container {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   width: 80%;
+  height: 30vh;
 }
 .completed {
   display: flex;

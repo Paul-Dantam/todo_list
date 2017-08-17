@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 
-
-
-
-
 <body>
 
     <section class="wrapper">
@@ -22,31 +18,23 @@
         </form>
 
         <div class="container">
-
             {{#todos}}
-            <section>
+            <div class="returnItem">
                 <form action="/completeItem" method="post">
-                    <button type="submit" name="removeButton" value="{{todo}}"> Mark Complete </button> {{todo}}
+                    <button type="submit" name="removeItem" value="{{todo}}"> Mark Complete </button> {{todo}}
                 </form>
-            </section>
+            </div>
             {{/todos}}
-
-
-
         </div>
 
         <div class="completed">
-
+            <h1>You did it</h1>
             {{#completed}}
             <div>
                 {{todo}}
             </div>
             {{/completed}}
-
         </div>
-
-
-
     </section>
 
 </body>
