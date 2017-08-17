@@ -16,10 +16,8 @@
 <body>
 
     <section class="wrapper">
-
         <form class="inputArea" action="/addItem" method="post">
-
-            <input class="input" type="text">
+            <input class="input" name="todo" type="text" />
             <button type="submit">Add todo</button>
         </form>
 
@@ -27,7 +25,7 @@
 
             {{#todos}}
             <section>
-                <form action="/complete" method="post">
+                <form action="/completeItem" method="post">
                     <button type="submit" name="removeButton" value="{{todo}}"> Mark Complete </button> {{todo}}
                 </form>
             </section>
@@ -39,11 +37,11 @@
 
         <div class="completed">
 
-            {{#finished}}
+            {{#completed}}
             <div>
-                {{.}}
+                {{todo}}
             </div>
-            {{/finished}}
+            {{/completed}}
 
         </div>
 

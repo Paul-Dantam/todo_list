@@ -16,33 +16,25 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
-app.get("/", (req, res) => {
-  res.render("index", { todos: todos });
-});
-
 let todos = [{ todo: "Clean chicken coop" }, { todo: "Feed the Dog" }];
-
 let completed = [];
+let newItem;
 
 app.get("/", (req, res) => {
-  res.render("home", { todos: todos, completed: completed });
+  res.render("index", { todos: todos, completed: completed });
 });
 
 app.post("/addItem", (req, res) => {
-  todos.push({ todo: req.body.item });
-  console.log(req.body.item);
-  console.log(todos);
+  todos.push(req.body);
   res.redirect("/");
 });
 
-app.post("/completedItem", (req, res) => {
-  console.log(req.body.removeButton);
+app.post("/completeItem", (req, res) => {
   todos.forEach((item, index) => {
     if (req.body.removeButton == todos[index].todo) {
       let addItem = todos[index];
       todos.splice(index, 1);
       completed.push(addItem);
-      console.log(completed);
     }
   });
   res.redirect("/");
