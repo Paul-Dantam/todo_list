@@ -20,9 +20,34 @@ app.get("/", (req, res) => {
   res.render("index", { todos: todos });
 });
 
-const todos = ["Wash the car"];
+let todos = [{ todo: "Clean chicken coop" }, { todo: "Feed the Dog" }];
 
-app.post("/", function(req, res) {
-  todos.push(req.body.todo);
+let completed = [];
+
+app.get("/", (req, res) => {
+  res.render("home", { todos: todos, completed: completed });
+});
+
+app.post("/addItem", (req, res) => {
+  todos.push({ todo: req.body.item });
+  console.log(req.body.item);
+  console.log(todos);
   res.redirect("/");
+});
+
+app.post("/completedItem", (req, res) => {
+  console.log(req.body.removeButton);
+  todos.forEach((item, index) => {
+    if (req.body.removeButton == todos[index].todo) {
+      let addItem = todos[index];
+      todos.splice(index, 1);
+      completed.push(addItem);
+      console.log(completed);
+    }
+  });
+  res.redirect("/");
+});
+
+app.listen(port, () => {
+  console.log(`server is running on port ${port}`);
 });

@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.completed {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.inputArea {
+  width: 80%;
+  border-bottom: 1px solid black;
+  padding: 1rem;
+}
+
+.input {
+  padding: .5rem;
+  transition: .4s;
+  width: 30%;
+}
+
+.returnItem {
+  padding: 1rem;
+}

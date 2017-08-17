@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 
@@ -16,26 +17,33 @@
 
     <section class="wrapper">
 
-        <div class="input">
+        <form class="inputArea" action="/addItem" method="post">
 
-            <input type="text"> <span>Add todo</span>
-
-        </div>
+            <input class="input" type="text">
+            <button type="submit">Add todo</button>
+        </form>
 
         <div class="container">
 
-            <div class="returnItem">
-                <span>Mark Complete</span>
-                <div class="todo">Do all the Things</div>
+            {{#todos}}
+            <section>
+                <form action="/complete" method="post">
+                    <button type="submit" name="removeButton" value="{{todo}}"> Mark Complete </button> {{todo}}
+                </form>
+            </section>
+            {{/todos}}
+
+
+
+        </div>
+
+        <div class="completed">
+
+            {{#finished}}
+            <div>
+                {{.}}
             </div>
-            <div class="returnItem">
-                <span>Mark Complete</span>
-                <div class="todo">Do all the Things</div>
-            </div>
-            <div class="returnItem">
-                <span>Mark Complete</span>
-                <div class="todo">Do all the Things</div>
-            </div>
+            {{/finished}}
 
         </div>
 
