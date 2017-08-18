@@ -14,23 +14,23 @@
     <section class="wrapper">
         <form class="inputArea" action="/addItem" method="post">
             <input class="input" name="todo" type="text" />
-            <button type="submit">Add todo</button>
+            <button class="button" type="submit">Add todo</button>
         </form>
 
         <div class="container">
             {{#todos}}
             <div class="returnItem">
                 <form action="/completeItem" method="post">
-                    <button type="submit" name="removeItem" value="{{todo}}"> Mark Complete </button> {{todo}}
+                    <button class="button" type="submit" name="removeItem" value="{{todo}}"> Mark Complete </button> <span class="todoItem">{{todo}}</span>
                 </form>
             </div>
             {{/todos}}
         </div>
 
         <div class="completed">
-            <h1>You did it</h1>
+            <h1>Completed</h1>
             {{#completed}}
-            <div>
+            <div class="complete">
                 {{todo}}
             </div>
             {{/completed}}
