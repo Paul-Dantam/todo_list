@@ -16,13 +16,29 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
+let todos = [{ todo: "Clean chicken coop" }, { todo: "Feed the Dog" }];
+let completed = [];
+
 app.get("/", (req, res) => {
-  res.render("index", { todos: todos });
+  res.render("index", { todos: todos, completed: completed });
 });
 
-const todos = ["Wash the car"];
-
-app.post("/", function(req, res) {
-  todos.push(req.body.todo);
+app.post("/addItem", (req, res) => {
+  todos.push(req.body);
   res.redirect("/");
+});
+
+app.post("/completeItem", (req, res) => {
+  todos.forEach((item, index) => {
+    if (req.body.removeItem == todos[index].todo) {
+      let addItem = todos[index];
+      todos.splice(index, 1);
+      completed.push(addItem);
+    }
+  });
+  res.redirect("/");
+});
+
+app.listen(port, () => {
+  console.log(`server is running on port ${port}`);
 });

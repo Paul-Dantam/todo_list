@@ -6,41 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
-
-
-
-
 
 <body>
 
     <section class="wrapper">
-
-        <div class="input">
-
-            <input type="text"> <span>Add todo</span>
-
-        </div>
+        <form class="inputArea" action="/addItem" method="post">
+            <input class="input" name="todo" type="text" />
+            <button class="button" type="submit">Add todo</button>
+        </form>
 
         <div class="container">
-
+            {{#todos}}
             <div class="returnItem">
-                <span>Mark Complete</span>
-                <div class="todo">Do all the Things</div>
+                <form action="/completeItem" method="post">
+                    <button class="button" type="submit" name="removeItem" value="{{todo}}"> Mark Complete </button> <span class="todoItem">{{todo}}</span>
+                </form>
             </div>
-            <div class="returnItem">
-                <span>Mark Complete</span>
-                <div class="todo">Do all the Things</div>
-            </div>
-            <div class="returnItem">
-                <span>Mark Complete</span>
-                <div class="todo">Do all the Things</div>
-            </div>
-
+            {{/todos}}
         </div>
 
-
-
+        <div class="completed">
+            <h1>Completed</h1>
+            {{#completed}}
+            <div class="complete">
+                {{todo}}
+            </div>
+            {{/completed}}
+        </div>
     </section>
 
 </body>
